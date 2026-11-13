@@ -1,0 +1,48 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Prototipo de baja fidelidad · Notas del docente</title>
+<style>
+:root{--bg:#f4f4f2;--ink:#333;--line:#888;--box:#e2e2df;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1e1e1c;--ink:#ddd;--line:#999;--box:#33332f}}
+:root[data-theme="dark"]{--bg:#1e1e1c;--ink:#ddd;--line:#999;--box:#33332f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 "Trebuchet MS",Arial,sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px}
+.tag{font-size:13px;border:1px dashed var(--line);display:inline-block;padding:2px 8px;margin-bottom:8px}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+button{font:inherit;color:var(--ink);background:var(--box);border:2px solid var(--line);padding:8px 14px;cursor:pointer}
+button.on{background:var(--ink);color:var(--bg)}
+.box{border:2px dashed var(--line);padding:12px;margin-bottom:12px}
+.bar{height:14px;border:2px solid var(--line);margin-top:6px}.bar i{display:block;height:100%;background:var(--line)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;border-bottom:1px dashed var(--line);padding:8px 0}
+.in{width:70px;height:30px;border:2px solid var(--line);background:var(--bg)}
+.note{font-size:13px;opacity:.8;border-left:4px solid var(--line);padding-left:8px;margin-top:8px}
+.s{display:none}.s.on{display:block}
+.x{width:100%;height:60px;border:2px solid var(--line);background:var(--box);display:grid;place-items:center}
+</style></head><body><main>
+<span class="tag">BAJA FIDELIDAD · boceto de flujo</span>
+<h1 style="margin:0">Notas del docente</h1>
+<nav><button class="on" onclick="go(0,this)">1. Inicio</button><button onclick="go(1,this)">2. Registro</button><button onclick="go(2,this)">3. Confirmación</button></nav>
+
+<section class="s on"><h2>Mis grupos</h2>
+<div class="box"><b>[ Grupo A ]</b> · Interfaz Hombre Máquina<div class="bar"><i style="width:75%"></i></div><small>30 / 40 notas</small></div>
+<div class="box"><b>[ Grupo B ]</b> · Bases de datos<div class="bar"><i style="width:100%"></i></div><small>35 / 35 notas</small></div>
+<div class="box"><b>[ Grupo C ]</b> · Ingeniería de software<div class="bar"><i style="width:20%"></i></div><small>8 / 40 notas</small></div>
+<div class="note">Nota de diseño: la barra de progreso responde a “¿cuánto falta?”. Fecha límite de cierre visible arriba.</div>
+<p><button onclick="go(1,document.querySelectorAll('nav button')[1])">Abrir Grupo A →</button></p></section>
+
+<section class="s"><h2>Registro de notas · Grupo A</h2>
+<div class="box">
+<div class="row"><span>[ Estudiante 1 ]</span><span class="in"></span><span>[estado]</span></div>
+<div class="row"><span>[ Estudiante 2 ]</span><span class="in"></span><span>[estado]</span></div>
+<div class="row"><span>[ Estudiante 3 ]</span><span class="in"></span><span>[estado]</span></div>
+<div class="row"><span>[ Estudiante 4 ]</span><span class="in"></span><span>[estado]</span></div>
+<div class="x" style="margin-top:10px">[ Observaciones del grupo ]</div></div>
+<div class="note">Notas: rango 0.0 a 5.0 · error en rojo junto al campo · estado = pendiente / borrador / guardado.</div>
+<p><button>← Volver</button> <button onclick="go(2,document.querySelectorAll('nav button')[2])">Guardar →</button></p></section>
+
+<section class="s"><h2>Confirmación</h2>
+<div class="box" style="text-align:center;padding:30px">[ ✓ ]<br><b>Notas guardadas</b><br><small>[ hora del guardado ]</small></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button>Deshacer</button><button>Ver historial</button><button onclick="go(0,document.querySelectorAll('nav button')[0])">Volver al inicio</button></div>
+<div class="note">Nota de diseño: la confirmación siempre muestra hora y la opción de deshacer.</div></section>
+<script>
+function go(i,b){document.querySelectorAll('.s').forEach((s,k)=>s.classList.toggle('on',k===i));document.querySelectorAll('nav button').forEach((x,k)=>x.classList.toggle('on',k===i));window.scrollTo(0,0)}
+</script></main></body></html>
